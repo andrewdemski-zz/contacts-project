@@ -1,0 +1,54 @@
+<% var results = JSON.stringify(listResults.recordsets) %>
+<% var jsonParsed = JSON.parse(results) %>
+<script>function formatPhoneNumber(phoneNumberString) {
+    var cleaned = ('' + phoneNumberString).replace(/\D/g, '')
+    var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/)
+    if (match) {
+      return '(' + match[1] + ') ' + match[2] + '-' + match[3]
+    }
+    return null
+  }</script>
+<p></p>
+<h2 class="text-center mb-3">All Contacts</h2>
+
+<form action="/contacts" method="POST">
+    <p>
+    <button type="button" style="width:150px" onClick="location.href='/contacts/newcontact'" class="btn btn-primary">New</button>&nbsp;&nbsp;
+Display <select name="display" onchange="this.form.submit()">
+    <option <% if (display == "-1") { %> selected <% } %> value="-1">All</option>
+    <option <% if (display == "1") { %> selected <% } %> value=1>1</option>
+    <option <% if (display == "5") { %> selected <% } %> value=5>5</option>
+    <option <% if (display == "10") { %> selected <% } %> value=10>10</option>
+    <option <% if (display == "20") { %> selected <% } %> value=20>20</option>
+    <option <% if (display == "50") { %> selected <% } %> value=50>50</option>
+    <option <% if (display == "100") { %> selected <% } %> value=100>100</option>
+</select> contact<%if(display==-1 || display>1){%>s<%}%></p>
+</form>
+<table class="table table-hover">
+    <% if (jsonParsed[0].length > 0) { %>
+        <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th></th>
+    </tr>
+    </thead>
+    <% } %>
+<% var num = (display == '-1') ? jsonParsed[0].length : display;  %>
+<% if (jsonParsed[0].length < display) { num = jsonParsed[0].length;} %>
+<% for (var i=0; i < num; i++) { %>
+    <tr>
+    <td><%= jsonParsed[0][i].contactName %></td>
+    <td><%= jsonParsed[0][i].contactEmail %></td>
+    <td><%= jsonParsed[0][i].contactPhone %></td>
+    <td><button onCLick="location.href='/contacts/delete/<%= jsonParsed[0][i].contactId %>'" type="button" onclick="location.href='/contacts'" class="btn btn-primary btn-sm">Delete</button></td>
+    </tr>
+<% } %>
+<tr>
+    <td colspan="4"><h5><%= num %> Contact<%if(num==0 || num>1){%>s<%}%> displayed out of a total of <%= jsonParsed[0].length %></h5></td>
+</tr>
+</table>
+<p>
+<div align="left"><button style="width:150px" onClick="location.href='/logout'" class="btn btn-primary">Logout</button></div>
+</p>
