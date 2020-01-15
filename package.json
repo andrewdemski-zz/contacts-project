@@ -1,0 +1,24 @@
+{
+  "name": "node_contacts",
+  "version": "1.0.0",
+  "description": "Node.js contacts",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Andrew Demski",
+  "license": "",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "express-ejs-layouts": "^2.5.0",
+    "express-session": "^1.17.0",
+    "mssql": "^6.0.1",
+    "node-sessionstorage": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
