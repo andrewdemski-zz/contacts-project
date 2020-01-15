@@ -24,20 +24,28 @@ router.post('/login', (req, res, next) => {
     else {
       var request = new sql.Request();
       request.query("SELECT username FROM Users WHERE username='" + username + "' and password='" + password + "'", function (err, recordset) {
-        if (err) throw err;
-        if (recordset.recordsets != "") {
-          console.log('User ' + username + ' successfully authenticated.');
-          storage.setItem('authenticated', 'true');
-          res.redirect('/contacts');
-        }
-        else {
-          console.log('User ' + username + ' with password ' + password + ' failed to authenticate.');
+        if (err) {
           req.flash(
             'error_msg',
-            'Incorrect username or password.'
+            'Unable to connect to database. ' + err.message
           );
-          storage.setItem('authenticated', 'false');
           res.redirect('/login');
+        }
+        else {
+          if (recordset.recordsets != "") {
+            console.log('User ' + username + ' successfully authenticated.');
+            storage.setItem('authenticated', 'true');
+            res.redirect('/contacts');
+          }
+          else {
+            console.log('User ' + username + ' with password ' + password + ' failed to authenticate.');
+            req.flash(
+              'error_msg',
+              'Incorrect username or password.'
+            );
+            storage.setItem('authenticated', 'false');
+            res.redirect('/login');
+          }
         }
       });
     }
