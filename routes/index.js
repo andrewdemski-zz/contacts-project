@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sql = require('mssql');
 const storage = require('node-sessionstorage');
+const config = require('../config/keys').sqlConfig;
 
 // Login Page
 router.get('/', (req, res) => res.render('login'));

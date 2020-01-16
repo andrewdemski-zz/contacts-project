@@ -5,12 +5,6 @@ const storage = require('node-sessionstorage');
 const config = require('../config/keys').sqlConfig;
 const ensureAuthenticated = require('../config/auth.js');
 
-// Connect to MSSQL
-sql
-  .connect(config)
-  .then(() => console.log('MSSQL Connected'))
-  .catch(err => console.log(err));
-
 // Create new contact page
 router.get('/newcontact', ensureAuthenticated, (req, res) => res.render('newcontact'));
 
