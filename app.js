@@ -3,6 +3,14 @@ const expressLayouts = require('express-ejs-layouts');
 const flash = require('connect-flash');
 const session = require('express-session');
 const app = express();
+const sql = require('mssql');
+const config = require('./config/keys').sqlConfig;
+
+// Connect to MSSQL
+sql
+  .connect(config)
+  .then(() => console.log('MSSQL Connected'))
+  .catch(err => console.log(err));
 
 //Set default number of contacts to display in dropdown ('-1' = 'All')
 const storage = require('node-sessionstorage');
