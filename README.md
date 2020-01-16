@@ -1,6 +1,6 @@
 # Andrew Demski Personal Project
 
-This is a create contacts app using Node.js, Express, Mssql, and EJS.
+This is a create contacts app using Node.js, Express, MS SQL, and EJS.
 
 ### Usage
 
@@ -12,8 +12,7 @@ $ npm install
 $ npm start
 
 # Visit http://localhost:5000
+
+# Visit http://https://sqlvm-265305.appspot.com (GCP version)
 ```
 
-### MS SQL
-
-Open "config/keys.js" and add your MS SQL server
