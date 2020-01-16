@@ -13,6 +13,6 @@ $ npm start
 
 # Visit http://localhost:5000
 
-# Visit http://https://sqlvm-265305.appspot.com (GCP version)
+# Visit https://sqlvm-265305.appspot.com (GCP version)
 ```
 
