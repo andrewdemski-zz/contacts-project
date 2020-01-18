@@ -1,7 +1,7 @@
 var config = {
-    user: 'sa',
-    password: 'Welcome1',
-    server: '35.232.9.211', 
+    user: 'sqlserver',
+    password: 'tM6ppg417Aivu4hf',
+    server: '34.74.71.55', 
     database: 'Customer'
   };
 
